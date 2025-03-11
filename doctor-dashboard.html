@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Doctor Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Doctor Patient Dashboard</h1>
+    <table id="patientsTable" border="1">
+      <thead>
+        <tr>
+          <th>Name</th><th>Mobile</th><th>Age</th><th>Height</th><th>Weight</th><th>Location</th><th>Symptoms</th><th>Date</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script>
+    fetch('http://localhost:3000/api/patients')
+      .then(res => res.json())
+      .then(data => {
+        const tbody = document.querySelector('#patientsTable tbody');
+        data.forEach(p => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${p.name}</td>
+            <td>${p.mobile}</td>
+            <td>${p.age}</td>
+            <td>${p.height}</td>
+            <td>${p.weight}</td>
+            <td>${p.location}</td>
+            <td>${p.symptoms.join(', ')}</td>
+            <td>${new Date(p.date).toLocaleString()}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      });
+  </script>
+</body>
+</html>

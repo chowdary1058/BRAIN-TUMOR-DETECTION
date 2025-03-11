@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Brain Tumor Detector</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="images.png" alt="Brain Scan Logo" style="width: 60px; height: 60px;" />
+      <h1>AI Brain Tumor Detector</h1>
+    </div>
+
+    <form id="tumorForm">
+      <label>Patient Name:</label>
+      <input type="text" id="patientName" required />
+
+      <label>Upload MRI Scan:</label>
+      <input type="file" id="mriScan" accept="image/*" required />
+
+      <div id="imagePreviewContainer" style="display: none;">
+        <label>MRI Scan Preview:</label>
+        <img id="mriImagePreview" />
+      </div>
+      <label>Mobile Number:</label>
+      <input type="tel" id="aMobile" required pattern="[0-9]{10}" placeholder="Enter 10-digit mobile number" />
+
+
+      <label>Age:</label>
+      <input type="number" id="age" required />
+
+      <label>Height (cm):</label>
+      <input type="number" id="height" required />
+
+      <label>Weight (kg):</label>
+      <input type="number" id="weight" required />
+
+      <label>Location:</label>
+      <input type="text" id="location" required />
+
+      <label>Brain Tumor Symptoms:</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" class="symptom" value="Headache" /> Headache</label><br>
+        <label><input type="checkbox" class="symptom" value="Nausea or vomiting" /> Nausea or vomiting</label><br>
+        <label><input type="checkbox" class="symptom" value="Blurred vision" /> Blurred vision</label><br>
+        <label><input type="checkbox" class="symptom" value="Seizures" /> Seizures</label><br>
+        <label><input type="checkbox" class="symptom" value="Memory problems" /> Memory problems</label><br>
+        <label><input type="checkbox" class="symptom" value="Difficulty speaking" /> Difficulty speaking</label><br>
+        <label><input type="checkbox" class="symptom" value="Balance issues" /> Balance issues</label><br>
+      </div>
+
+      <button type="submit" class="detect-btn">Detect Tumor</button>
+    </form>
+    <!-- Add this inside the <body>, below the results section and before appointmentSection -->
+<div id="topDoctorsSection" style="display:none; margin-top: 20px;">
+  <h2>Top 10 Brain Tumor Doctors</h2>
+  <ul class="doctor-list">
+    <li><strong>Dr. Arjun Mehta</strong> – Neuro-oncologist, Apollo Hospitals, Delhi</li>
+    <li><strong>Dr. Priya Iyer</strong> – Neurosurgeon, Fortis Memorial Research Institute, Gurgaon</li>
+    <li><strong>Dr. Rajeev Malhotra</strong> – Senior Neurosurgeon, AIIMS, New Delhi</li>
+    <li><strong>Dr. Neha Sharma</strong> – Neuro Specialist, Max Super Speciality Hospital, Mumbai</li>
+    <li><strong>Dr. Karan Singh</strong> – Brain Tumor Surgeon, Medanta – The Medicity, Gurgaon</li>
+    <li><strong>Dr. Sneha Desai</strong> – Consultant Neuro-oncologist, Manipal Hospital, Bangalore</li>
+    <li><strong>Dr. Ravi Menon</strong> – Neuro Surgeon, Christian Medical College (CMC), Vellore</li>
+    <li><strong>Dr. Ananya Rao</strong> – Head of Neuro Sciences, Kokilaben Hospital, Mumbai</li>
+    <li><strong>Dr. Deepak Reddy</strong> – Specialist in Brain Tumors, Narayana Health City, Bangalore</li>
+    <li><strong>Dr. Swati Kulkarni</strong> – Neurosurgeon, Ruby Hall Clinic, Pune</li>
+  </ul>
+</div>
+
+
+    <div class="results" id="results" style="display:none;">
+      <h2>Detection Result</h2>
+      <p id="accuracyText"></p>
+      <button class="appointment-btn" onclick="showAppointment()">Book Doctor Appointment</button>
+    </div>
+
+    <div id="appointmentSection" style="display: none;">
+      <h2>Book Doctor Appointment</h2>
+      <form id="appointmentForm">
+        <label>Full Name:</label>
+        <input type="text" id="aName" required />
+
+        <label>Preferred Date:</label>
+        <input type="date" id="aDate" required />
+
+        <label>Preferred Time:</label>
+        <input type="time" id="aTime" required />
+
+        <button type="submit" id="submitAppointment">Confirm Appointment</button>
+      </form>
+      <p id="confirmationMessage" style="display:none;"></p>
+    </div>
+  </div>
+
+  <!-- Chatbot -->
+  <div id="chatbotIcon" onclick="toggleChatbot()">💬</div>
+  <div id="chatbotWindow">
+    <div class="chatbot-header">Health Chatbot <span onclick="toggleChatbot()" style="float:right; cursor:pointer;">✖</span></div>
+    <div id="chatMessages" class="chat-messages"></div>
+    <div class="chat-input-area">
+      <input type="text" id="userMessage" placeholder="Ask a health question..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
